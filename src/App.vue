@@ -2,6 +2,8 @@
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import Navigation from './components/Navigation.vue'
+import ChonkyDwayne from './components/icons/chonky_dwayne.vue'
+import FonkyDwayne from './components/icons/fonky_dwayne.vue'
 </script>
 
 <template>
@@ -10,6 +12,9 @@ import Navigation from './components/Navigation.vue'
   </header>
 
   <main>
+    <!-- Simple svg images with chonky AND fonky dwayne :) -->
+    <!--FonkyDwayne/-->
+    <!--ChonkyDwayne/-->
   </main>
 </template>
 
