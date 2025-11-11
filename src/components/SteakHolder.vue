@@ -3,6 +3,7 @@
 
 <template>
   <div class="container">
+    <h1>Steakholder</h1>
     <ul class="steak-list">
       <li class="steak-item">
         <img src="/images/steakholder2.jpeg" alt="Steak Holder 2" />
@@ -25,9 +26,15 @@
   width: 100%;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 40px;
 }
 
 .steak-list {
