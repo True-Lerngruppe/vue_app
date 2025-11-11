@@ -1,4 +1,10 @@
 <script setup lang="ts">
+
+function thorstenMediumClick() {
+  const audio = new Audio('/audio/jamooooin.wav');
+  audio.play();
+}
+
 </script>
 
 <template>
@@ -14,8 +20,16 @@
         <p class="steak-text">Chuck Ribeye</p>
       </li>
       <li class="steak-item">
+        <img src="/images/steakholder4.jpeg" alt="Steak Holder 4" />
+        <p class="steak-text">Madam T-Bone</p>
+      </li>
+      <li class="steak-item">
+        <img src="/images/steakholder5.jpeg" alt="Steak Holder 5" />
+        <p class="steak-text">Thorsten (medium)</p>
+      </li>
+      <li class="steak-item clickable" @click="thorstenMediumClick">
         <img src="/images/steakholder1.jpeg" alt="Steak Holder" />
-        <p class="steak-text">Steak</p>
+        <p class="steak-text">Thorsten (well-done)</p>
       </li>
     </ul>
   </div>
@@ -58,6 +72,10 @@ h1 {
 
 .steak-item:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 img {
