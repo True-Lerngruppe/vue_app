@@ -19,8 +19,15 @@ function shuffleMenuItems() {
 
   for (let i = bar.children.length; i >= 0; i--) {
     const child = bar.children[Math.random() * i | 0];
-    if(!child) continue;
+    if (!child) continue;
     bar.appendChild(child);
+  }
+}
+
+function handleNavClick(event: Event) {
+  const target = event.target as HTMLElement;
+  if (target.tagName.toLowerCase() === 'A') {
+    closeMenu();
   }
 }
 
@@ -42,9 +49,8 @@ onMounted(() => {
   <div class="overlay" :class="{ active: isMenuOpen }" @click="closeMenu"></div>
 
   <!-- Slide-in Menu -->
-  <nav :id="nav_id" class="slide-menu" :class="{ open: isMenuOpen }">
-    <a href="index.html" @click="closeMenu">Svg to svg converter</a>
-    <a href="/" @click="closeMenu">Patricks lustige idee</a>
+  <nav :id="nav_id" class="slide-menu" :class="{ open: isMenuOpen }" @click="handleNavClick">
+    <slot></slot>
   </nav>
 </template>
 
@@ -135,7 +141,7 @@ onMounted(() => {
   left: 0;
 }
 
-.slide-menu a {
+.slide-menu :deep(a) {
   text-decoration: none;
   background-color: #281D4E;
   border: 2px solid green;
@@ -148,8 +154,8 @@ onMounted(() => {
   transition: background-color 0.3s ease;
 }
 
-.slide-menu a:hover,
-.slide-menu a:active {
+.slide-menu :deep(a:hover),
+.slide-menu :deep(a:active) {
   background-color: #A020F0;
 }
 </style>

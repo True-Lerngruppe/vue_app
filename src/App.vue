@@ -5,12 +5,14 @@ import ChonkyDwayne from './components/icons/chonky_dwayne.vue'
 import FonkyDwayne from './components/icons/fonky_dwayne.vue'
 import BurgerMenu from './components/BurgerMenu.vue'
 
-
 </script>
 
 <template>
   <header>
-  <BurgerMenu/>
+    <BurgerMenu>
+      <a href="index.html">Svg to svg converter</a>
+      <a href="/">Patricks lustige idee</a>
+    </BurgerMenu>
   </header>
 
   <main>
