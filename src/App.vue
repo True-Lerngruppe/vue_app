@@ -10,8 +10,8 @@ import BurgerMenu from './components/BurgerMenu.vue'
 <template>
   <header>
     <BurgerMenu>
-      <a href="index.html">Svg to svg converter</a>
-      <a href="/">Patricks lustige idee</a>
+      <RouterLink to="/svg_converter">Svg to svg converter</RouterLink>
+      <RouterLink to="/">Patricks lustige idee</RouterLink>
     </BurgerMenu>
   </header>
 
@@ -19,7 +19,7 @@ import BurgerMenu from './components/BurgerMenu.vue'
     <!-- Simple svg images with chonky AND fonky dwayne :) -->
     <!--FonkyDwayne/-->
     <!--ChonkyDwayne/-->
-
+    <RouterView />
   </main>
 </template>
 
