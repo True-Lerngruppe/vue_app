@@ -1,10 +1,10 @@
 import { createWebHistory, createRouter } from 'vue-router'
 import SvgToSvgConverter from './components/SvgToSvgConverter.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import FunnySomething from './components/BouncyButton.vue'
 import SteakHolder from './components/SteakHolder.vue'
 
 const routes = [
-  { path: '/', component: TheWelcome },
+  { path: '/funny_something', component: FunnySomething },
   { path: '/svg_converter', component: SvgToSvgConverter },
   { path: '/impressum', component: SteakHolder },
 
