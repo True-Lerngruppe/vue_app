@@ -1,4 +1,4 @@
-import { createWebHistory, createRouter } from 'vue-router'
+import { createWebHashHistory, createRouter } from 'vue-router'
 import SvgToSvgConverter from './components/SvgToSvgConverter.vue'
 import FunnySomething from './components/BouncyButton.vue'
 import SteakHolder from './components/SteakHolder.vue'
@@ -14,5 +14,5 @@ const routes = [
 
 export const router = createRouter({
   routes,
-  history: createWebHistory(),
+  history: createWebHashHistory(),
 })
