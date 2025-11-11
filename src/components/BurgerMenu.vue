@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
 const nav_id = ref('nav-bar');
+
+const route = useRoute();
 
 const isMenuOpen = ref(false);
 
@@ -24,12 +27,10 @@ function shuffleMenuItems() {
   }
 }
 
-function handleNavClick(event: Event) {
-  const target = event.target as HTMLElement;
-  if (target.tagName.toLowerCase() === 'A') {
-    closeMenu();
-  }
-}
+watch(() => route.path, () => {
+  closeMenu();
+  shuffleMenuItems();
+});
 
 onMounted(() => {
   shuffleMenuItems();
@@ -49,7 +50,7 @@ onMounted(() => {
   <div class="overlay" :class="{ active: isMenuOpen }" @click="closeMenu"></div>
 
   <!-- Slide-in Menu -->
-  <nav :id="nav_id" class="slide-menu" :class="{ open: isMenuOpen }" @click="handleNavClick">
+  <nav :id="nav_id" class="slide-menu" :class="{ open: isMenuOpen }">
     <slot></slot>
   </nav>
 </template>
