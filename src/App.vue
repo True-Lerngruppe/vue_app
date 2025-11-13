@@ -4,9 +4,11 @@ import BurgerMenu from './components/BurgerMenu.vue'
 
 <template>
   <BurgerMenu>
+    <RouterLink to="/">Home</RouterLink>
     <RouterLink to="/svg_converter">Svg to svg converter</RouterLink>
     <RouterLink to="/impressum">Impressum</RouterLink>
     <RouterLink to="/funny_something">Patricks lustige idee</RouterLink>
+    <RouterLink to="/trippy">Go for a trip</RouterLink>
   </BurgerMenu>
 
   <main>
