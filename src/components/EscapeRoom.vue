@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import RoomOne from './RoomOne.vue'
 import RoomTwo from './RoomTwo.vue'
 import RoomThree from './RoomThree.vue'
@@ -7,6 +7,8 @@ import RoomFour from './RoomFour.vue'
 import RoomFive from './RoomFive.vue'
 
 const currentSlide = ref(0)
+const roomOneSolved = ref(false)
+
 const slides = [
   { component: RoomOne },
   { component: RoomTwo },
@@ -15,15 +17,17 @@ const slides = [
   { component: RoomFive }
 ]
 
-const nextSlide = () => {
-  if (currentSlide.value < slides.length - 1) {
-    currentSlide.value++
+const isNextDisabled = computed(() => {
+  // Only disable next button if we're on room 1 and it's not solved
+  if (currentSlide.value === 0 && !roomOneSolved.value) {
+    return true
   }
-}
+  return currentSlide.value >= slides.length - 1
+})
 
-const prevSlide = () => {
-  if (currentSlide.value > 0) {
-    currentSlide.value--
+const nextSlide = () => {
+  if (currentSlide.value < slides.length - 1 && !isNextDisabled.value) {
+    currentSlide.value++
   }
 }
 </script>
@@ -40,26 +44,17 @@ const prevSlide = () => {
           'next': index > currentSlide
         }]"
       >
-        <component :is="slide.component" />
+        <component
+          :is="slide.component"
+          @puzzle-solved="roomOneSolved = true"
+        />
       </div>
     </div>
 
     <div class="controls">
       <button
-        @click="prevSlide"
-        :disabled="currentSlide === 0"
-        class="arrow-btn prev-btn"
-      >
-        ← Previous
-      </button>
-
-      <div class="slide-counter">
-        {{ currentSlide + 1 }} / {{ slides.length }}
-      </div>
-
-      <button
         @click="nextSlide"
-        :disabled="currentSlide === slides.length - 1"
+        :disabled="isNextDisabled"
         class="arrow-btn next-btn"
       >
         Next →
@@ -172,14 +167,5 @@ const prevSlide = () => {
 .arrow-btn:disabled {
   opacity: 0.3;
   cursor: not-allowed;
-}
-
-.slide-counter {
-  font-size: 1.1em;
-  color: white;
-  font-weight: bold;
-  min-width: 100px;
-  text-align: center;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 </style>
