@@ -5,6 +5,11 @@ function thorstenMediumClick() {
   audio.play();
 }
 
+function croissantMinhClick() {
+  const audio = new Audio('/audio/quason.wav');
+  audio.play();
+}
+
 </script>
 
 <template>
@@ -12,24 +17,28 @@ function thorstenMediumClick() {
     <h1>Steakholder</h1>
     <ul class="steak-list">
       <li class="steak-item">
-        <img src="/images/steakholder2.jpeg" alt="Steak Holder 2" />
+        <img src="/images/steakholder2.jpeg" alt="Real Steak Holder" />
         <p class="steak-text">Sir Arthur Loin</p>
       </li>
       <li class="steak-item">
-        <img src="/images/steakholder3.jpeg" alt="Steak Holder 3" />
+        <img src="/images/steakholder3.jpeg" alt="Unreal Steak Holder" />
         <p class="steak-text">Chuck Ribeye</p>
       </li>
       <li class="steak-item">
-        <img src="/images/steakholder4.jpeg" alt="Steak Holder 4" />
+        <img src="/images/steakholder4.jpeg" alt="Fat Steak Holder" />
         <p class="steak-text">Madam T-Bone</p>
       </li>
       <li class="steak-item">
-        <img src="/images/steakholder5.jpeg" alt="Steak Holder 5" />
+        <img src="/images/steakholder5.jpeg" alt="Thorsten Steak Holder" />
         <p class="steak-text">Thorsten (medium)</p>
       </li>
       <li class="steak-item clickable" @click="thorstenMediumClick">
-        <img src="/images/steakholder1.jpeg" alt="Steak Holder" />
+        <img src="/images/steakholder1.jpeg" alt="Fake Steak Holder" />
         <p class="steak-text">Thorsten (well-done)</p>
+      </li>
+      <li class="steak-item clickable" @click="croissantMinhClick">
+        <img src="/images/WaifuSteak.jpeg" alt="Waifu Steak Holder" />
+        <p class="steak-text">Waifu Steak</p>
       </li>
     </ul>
   </div>
