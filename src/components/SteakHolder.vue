@@ -1,13 +1,21 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 
 function thorstenMediumClick() {
   const audio = new Audio('/audio/jamooooin.wav');
   audio.play();
 }
 
+const quasons = ref(0);
 function croissantMinhClick() {
-  const audio = new Audio('/audio/quason.wav');
-  audio.play();
+  quasons.value++;
+  if (quasons.value >= 3) {
+    const audio = new Audio('/audio/quason_cursed.wav');
+    audio.play();
+  }else {
+    const audio = new Audio('/audio/quason.wav');
+    audio.play();
+  }
 }
 
 </script>
@@ -37,7 +45,8 @@ function croissantMinhClick() {
         <p class="steak-text">Thorsten (well-done)</p>
       </li>
       <li class="steak-item clickable" @click="croissantMinhClick">
-        <img src="/images/WaifuSteak.jpeg" alt="Waifu Steak Holder" />
+        <img v-if="quasons < 3" src="/images/WaifuSteak.jpeg" alt="Waifu Steak Holder" />
+        <img v-if="quasons >= 3" src="/images/CursedWaifuSteakHolder.jpeg" alt="Cursed Waifu Steak Holder" />
         <p class="steak-text">Waifu Steak</p>
       </li>
     </ul>
