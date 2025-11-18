@@ -1,18 +1,22 @@
-import { createWebHistory, createRouter } from 'vue-router'
+import { createWebHashHistory, createRouter } from 'vue-router'
 import SvgToSvgConverter from './components/SvgToSvgConverter.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import FunnySomething from './components/BouncyButton.vue'
 import SteakHolder from './components/SteakHolder.vue'
+import MainPage from './components/MainPage.vue'
+import LsdTrip from './components/LsdTrip.vue'
 
 const routes = [
-  { path: '/', component: TheWelcome },
+  { path: '/', component: MainPage },
+  { path: '/funny_something', component: FunnySomething },
   { path: '/svg_converter', component: SvgToSvgConverter },
   { path: '/impressum', component: SteakHolder },
+  { path: '/trippy', component: LsdTrip },
 
   // redirect to default route on unknown paths
-  {path: '/:pathMatch(.*)*', redirect: '/'},
+  { path: '/:pathMatch(.*)*', redirect: '/' },
 ]
 
 export const router = createRouter({
   routes,
-  history: createWebHistory(),
+  history: createWebHashHistory(),
 })
