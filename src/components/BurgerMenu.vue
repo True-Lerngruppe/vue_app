@@ -2,6 +2,10 @@
 import { onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
+const props = defineProps<{
+  isEnabled?: boolean;
+}>();
+
 const nav_id = ref('nav-bar');
 
 const route = useRoute();
@@ -9,7 +13,9 @@ const route = useRoute();
 const isMenuOpen = ref(false);
 
 function toggleMenu() {
-  isMenuOpen.value = !isMenuOpen.value;
+  if (props.isEnabled !== false) {
+    isMenuOpen.value = !isMenuOpen.value;
+  }
 }
 
 function closeMenu() {
@@ -40,7 +46,7 @@ onMounted(() => {
 
 <template>
   <!-- Burger Button -->
-  <button class="burger-button" @click="toggleMenu" aria-label="Toggle menu">
+  <button class="burger-button" @click="toggleMenu" aria-label="Toggle menu" :disabled="isEnabled === false" :class="{ disabled: isEnabled === false }">
     <span :class="{ open: isMenuOpen }"></span>
     <span :class="{ open: isMenuOpen }"></span>
     <span :class="{ open: isMenuOpen }"></span>
@@ -77,8 +83,13 @@ onMounted(() => {
   transition: background-color 0.3s ease;
 }
 
-.burger-button:hover {
+.burger-button:hover:not(.disabled) {
   background-color: #A020F0;
+}
+
+.burger-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .burger-button span {

@@ -1,10 +1,25 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute } from 'vue-router';
+import { ref, watch } from 'vue';
 import BurgerMenu from './components/BurgerMenu.vue'
+
+const route = useRoute();
+const isMenuEnabled = ref(true);
+
+// Disable menu when on escape room route
+watch(() => route.path, (newPath) => {
+  if (newPath === '/escape_room') {
+    isMenuEnabled.value = false;
+  }
+});
+
+const handleEnableMenu = () => {
+  isMenuEnabled.value = true;
+};
 </script>
 
 <template>
-  <BurgerMenu>
+  <BurgerMenu :is-enabled="isMenuEnabled">
     <RouterLink to="/">Home</RouterLink>
     <RouterLink to="/svg_converter">Svg to svg converter</RouterLink>
     <RouterLink to="/impressum">Impressum</RouterLink>
@@ -14,7 +29,7 @@ import BurgerMenu from './components/BurgerMenu.vue'
   </BurgerMenu>
 
   <main>
-    <RouterView />
+    <RouterView @enable-menu="handleEnableMenu" />
   </main>
 </template>
 

@@ -6,8 +6,13 @@ import RoomThree from './RoomThree.vue'
 import RoomFour from './RoomFour.vue'
 import RoomFive from './RoomFive.vue'
 
+const emit = defineEmits<{
+  enableMenu: []
+}>();
+
 const currentSlide = ref(0)
 const roomOneSolved = ref(false)
+const isMenuEnabled = ref(true)
 
 const slides = [
   { component: RoomOne },
@@ -28,6 +33,8 @@ const isNextDisabled = computed(() => {
 const nextSlide = () => {
   if (currentSlide.value < slides.length - 1 && !isNextDisabled.value) {
     currentSlide.value++
+    // Disable menu when entering EscapeRoom (any room beyond room 0)
+    isMenuEnabled.value = false
   }
 }
 </script>
@@ -47,12 +54,14 @@ const nextSlide = () => {
         <component
           :is="slide.component"
           @puzzle-solved="roomOneSolved = true"
+          @enable-menu="() => { isMenuEnabled = true; emit('enableMenu'); }"
         />
       </div>
     </div>
 
     <div class="controls">
       <button
+        v-if="currentSlide !== slides.length - 1"
         @click="nextSlide"
         :disabled="isNextDisabled"
         class="arrow-btn next-btn"
